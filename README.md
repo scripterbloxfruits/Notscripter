@@ -1,27 +1,10 @@
-local Plr = game.Players.LocalPlayer
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Workspace = game:GetService("Workspace")
-local TweenService = game:GetService("TweenService")
+-- Chatmox Hub - Open Source Full Script for Blox Fruits -- Credits: Você (criador), comunidade open-source, base Rayfield UI
 
--- Utilidades
-function TweenTo(pos)
-    local char = Plr.Character
-    if char and char:FindFirstChild("HumanoidRootPart") then
-        local tween = TweenService:Create(char.HumanoidRootPart, TweenInfo.new((char.HumanoidRootPart.Position - pos).Magnitude/300, Enum.EasingStyle.Linear), {CFrame = CFrame.new(pos)})
-        tween:Play()
-        tween.Completed:Wait()
-    end
-end
+-- SERVICES local Players = game:GetService("Players") local ReplicatedStorage = game:GetService("ReplicatedStorage") local TeleportService = game:GetService("TeleportService") local HttpService = game:GetService("HttpService") local RunService = game:GetService("RunService") local LocalPlayer = Players.LocalPlayer local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
 
-function GetEnemy()
-    for _, mob in pairs(Workspace.Enemies:GetChildren()) do
-        if mob:FindFirstChild("HumanoidRootPart") and mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
-            return mob
-        end
-    end
-    return nil
-end
+-- LOAD RAYFIELD UI LIBRARY local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
-function EquipWeapon()
-    for i,v in pairs(Plr.Backpack:GetChildren()) do
-        if v:IsA("Tool") and string.find(v.Name, "Katana")
+local Window = Rayfield:CreateWindow({ Name = "Chatmox Hub | Blox Fruits", LoadingTitle = "Chatmox Hub", LoadingSubtitle = "by Open Source Devs", ConfigurationSaving = { Enabled = true, FolderName = nil, FileName = "ChatmoxHub" }, Discord = { Enabled = false, Invite = "", RememberJoins = true }, KeySystem = false })
+
+-- AUTO FARM TAB local AutoFarmTab = Window:CreateTab("Auto Farm", 4483362458) AutoFarmTab:CreateToggle({ Name = "Auto Farm NPC", CurrentValue = false, Flag = "AutoFarmNPC", Callback = function(Value) getgenv().AutoFarm = Value while getgenv().AutoFarm do task.wait()
+
